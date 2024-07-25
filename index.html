@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width , initial-scale=1.0">
+        <title>TrafficSignal</title>
+        <link rel="stylesheet" href="trafficsignal.css"></link>
+        <style>
+        body{
+    margin: 0%;
+    padding: 0%;
+    background-image: linear-gradient(  rgb(128, 128, 223) , rgb(49, 48, 48) , rgb(181, 63, 63));
+}
+#signalbody{
+    position: absolute;
+    width: 150px;
+    height: 350px;
+    margin-top: 50px;
+    margin-left: 500px;
+    border: 5px solid black;
+    border-radius: 70px;
+    background-color: rgb(56, 55, 55);
+
+}
+#redlight{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    margin-left: 20px;
+    margin-top: 5px;
+    border: 5px solid black;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: rgb(56, 55, 55);
+    }
+
+#orangelight{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    margin-top: 120px;
+    margin-left: 20px;
+    border: 5px solid black;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: rgb(56, 55, 55);
+}
+#greenlight{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    margin-top: 235px;
+    margin-left: 20px;
+    border: 5px solid black;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: rgb(56, 55, 55)
+}
+#pole{
+    position: absolute;
+    width: 50px;
+    height: 300px;
+    margin-top: 408px;
+    margin-left: 555px;
+    border: 1px solid black;
+    background-color: black;
+}
+#base{
+    position: absolute;
+    width: 150px;
+    height: 50px;
+    margin-top:708px ;
+    margin-left: 500px;
+    border: 5px solid black;
+    background-color: black;
+    border-top-right-radius: 25px;
+    border-top-left-radius:25px ;
+}
+#timebox{
+    position: absolute;
+    width: 70px;
+    height: 90px;
+    margin-left: 535px;
+    margin-top: 460px;
+    border: 10px solid black;
+    background-color: rgb(169, 162, 162);
+    border-radius: 15px;
+}
+#display{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 70px;
+    color: red;
+}
+
+        </style>
+
+
+    </head>
+    <body>
+        <div id="signalbody">
+            <div id="redlight">Stop</div>
+            <div id="orangelight">Slow</div>
+            <div id="greenlight">Go</div>
+        </div>
+        <div id="pole"></div>
+        <div id="base"></div>
+        <div id="holder1"></div>
+        <div id="holder2"></div>
+        <div id="holder3"></div>
+        <div id="holder4"></div>
+        <div id="timebox">
+            <div id="display"></div>
+        </div>
+        <script>
+            
+             function red(){
+                let red = document.getElementById("redlight")
+                red.style.backgroundColor="red";
+                red.style.boxShadow="0 0 20px red,0 0 40px red";
+                let orange = document.getElementById("orangelight")
+                orange.style.backgroundColor="rgb(56, 55, 55)";
+                orange.style.boxShadow="none";
+                setTimeout(green , 5000);
+             }
+             
+             function orange(){
+                let orange = document.getElementById("orangelight")
+                orange.style.backgroundColor="orange";
+                orange.style.boxShadow="0 0 20px orange,0 0 40px orange";
+                let green = document.getElementById("greenlight")
+                green.style.backgroundColor="rgb(56, 55, 55)";
+                green.style.boxShadow="none";
+                setTimeout(red , 3000);
+             }
+             function green(){
+                let green = document.getElementById("greenlight")
+                green.style.backgroundColor="green";
+                green.style.boxShadow="0 0 20px green,0 0 40px green";
+                let red = document.getElementById("redlight")
+                red.style.backgroundColor="rgb(56, 55, 55)";
+                red.style.boxShadow="none";
+                setTimeout(orange , 5000);
+             }
+             green();
+             
+            var timered = document.getElementById("display");
+            var timeorange = document.getElementById("display");
+            var timegreen = document.getElementById("display");
+           
+            function timer1(){
+                var r=4
+                var timerun1 = setInterval(()=>{
+                    timered.innerHTML=r;
+                    r--;
+                    if(r < 0){
+                        clearInterval(timerun1)      
+                    }
+                    }, 1000)
+                setTimeout(timer3, 5000)
+            }
+           
+            function timer2(){
+                var o=2
+                var timerun2 = setInterval(()=>{
+                    timeorange.innerHTML=o;
+                    o--;
+                    if(o < 0){
+                        clearInterval(timerun2)   
+                    }
+                    }, 1000)
+                setTimeout(timer1, 3000)
+            }
+            
+            function timer3(){
+                var g=4
+                var timerun3 = setInterval(()=>{
+                    timegreen.innerHTML=g;
+                    g--;
+                    if(g < 0){
+                        clearInterval(timerun3)   
+                    }
+                    }, 1000)
+                
+                setTimeout(timer2, 5000)
+            }
+            timer3();
+        
+        </script>
+
+    </body>
+</html>
